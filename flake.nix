@@ -17,7 +17,7 @@
     };
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkags/nixos-23.11";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
         hyprland.url = "github:hyprwm/Hyprland";
     };
 
