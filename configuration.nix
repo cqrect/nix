@@ -4,6 +4,25 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    prime = {
+      sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -45,6 +64,8 @@
     vscode
     jdk17
     noto-fonts
+    pulseaudio
+    lshw
   ];
 
   sound.enable = true;
@@ -58,6 +79,7 @@
     pulse.enable = true;
   };
   services.v2raya.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   system.stateVersion = "24.05";
 }
