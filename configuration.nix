@@ -11,7 +11,7 @@
   };
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
@@ -25,6 +25,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "nvidia.NVreg_perserveVideoMemoryAllocations=1" ];
 
   networking.networkmanager.enable = true;
 
@@ -68,9 +69,11 @@
     lshw
   ];
 
+  security.rtkit.enable = true;
+  security.sudo.wheelNeedPassword = false;
+
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   services.pipewire = {
     enable = true;
