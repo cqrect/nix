@@ -67,10 +67,11 @@
     noto-fonts
     pulseaudio
     lshw
+    steam
   ];
 
   security.rtkit.enable = true;
-  security.sudo.wheelNeedPassword = false;
+  security.sudo.wheelNeedsPassword = false;
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
